@@ -11,7 +11,8 @@ const Footer: React.FC = () => {
             <span className="logo-text">Identifi</span>
           </div>
           <p className="footer-tagline">
-            Advanced identity verification for the modern web
+            Advanced identity verification for organization, businesses, and
+            compnay, to use when meeting people for the first time.
           </p>
           <div className="footer-social">
             <a href="#" aria-label="Twitter">
