@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./FeaturesSection.css";
-import scanImage from "../../assets/king.png";
+// import scanImage from "../../assets/king.png";
 
 const features = [
   {
@@ -69,12 +69,12 @@ const FeaturesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="identity-visualization">
+        {/* <div className="identity-visualization">
           <div className="profile-circle">
             <div className="scan-line" />
             <img src={scanImage} alt="scanning" />
           </div>
-        </div>
+        </div> */}
 
         <div className="features-grid">
           {features.map((feature, index) => (

@@ -108,6 +108,9 @@
   width: 320px;
   height: 200px;
   background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  background-image: url(../../assets/king.png);
+  background-position: center;
+  background-size: cover;
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
@@ -121,13 +124,13 @@
   transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(-10px);
 }
 
-.card-face {
+.hero .card-face {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.card-photo {
+.hero .card-photo {
   width: 60px;
   height: 60px;
   border-radius: 8px;
@@ -135,25 +138,33 @@
   border: 2px solid #dee2e6;
   margin-bottom: 1rem;
 }
+.hero .card-photo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
 
-.card-details {
+.hero .card-details {
   margin-top: auto;
 }
 
-.card-name {
+.hero .card-name {
   font-size: 1.2rem;
   font-weight: 700;
   color: #212529;
+  color: white;
   letter-spacing: 0.5px;
 }
 
-.card-id {
+.hero .card-id {
   font-size: 0.9rem;
   color: #6c757d;
+  color: white;
+
   margin-top: 0.3rem;
 }
 
-.card-chip {
+.hero .card-chip {
   position: absolute;
   right: 1.5rem;
   top: 1.5rem;
@@ -163,7 +174,7 @@
   border-radius: 5px;
 }
 
-.scan-animation {
+.hero .scan-animation {
   position: absolute;
   top: 0;
   left: 0;
@@ -269,22 +280,21 @@
   }
 
   .identity-card {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
+    width: 300px;
+    height: 200px;
     padding: 1.2rem;
   }
 
-  .card-photo {
+  .hero .card-photo {
     width: 50px;
     height: 50px;
   }
 
-  .card-name {
+  .hero .card-name {
     font-size: 1rem;
   }
 
-  .card-id {
+  .hero .card-id {
     font-size: 0.85rem;
   }
 }

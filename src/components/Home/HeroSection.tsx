@@ -1,5 +1,6 @@
 import React from "react";
 import "./HeroSection.css";
+import scanImage from "../../assets/king.png";
 
 interface HeroSectionProps {
   onGetStarted?: () => void;
@@ -19,7 +20,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             Verification System
           </h1>
           <p className="hero-subtitle">
-            Advanced biometric recognition and identity verification for secure,
+            Advanced Facial recognition and identity verification for secure,
             seamless authentication.
           </p>
           <div className="hero-actions">
@@ -42,9 +43,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="hero-visual">
           <div className="identity-card">
             <div className="card-face">
-              <div className="card-photo" aria-hidden="true"></div>
+              <div className="card-photo" aria-hidden="true">
+                <img src={scanImage} alt="image" />
+              </div>
               <div className="card-details">
-                <div className="card-name">JANE DOE</div>
+                <div className="card-name">KING DAMIAN</div>
                 <div className="card-id">ID: 4578-2309</div>
               </div>
               <div className="card-chip" aria-hidden="true"></div>
