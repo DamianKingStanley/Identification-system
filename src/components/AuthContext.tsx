@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  organization: unknown;
+  organization: string;
   loading: boolean;
   error: string | null;
   register: (orgData: RegisterData) => Promise<void>;
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
+  name: string;
 }
 
 interface RegisterData {
@@ -43,9 +44,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const checkAuth = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5000/api/auth/check", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "http://localhost:5000/api/organization/check",
+          {
+            withCredentials: true,
+          }
+        );
         if (res.data.organization) {
           setIsAuthenticated(true);
           setOrganization(res.data.organization);

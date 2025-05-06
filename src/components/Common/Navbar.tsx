@@ -1,49 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import './Navbar.css';
-
-interface NavItem {
-  label: string;
-  href: string;
-  subItems?: NavItem[];
-}
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../AuthContext"; // adjust import
+import "./Navbar.css";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
 
-  const navItems: NavItem[] = [
-    { label: 'Home', href: '/' },
-    { 
-      label: 'Solutions', 
-      href: '#',
+  const {
+    isAuthenticated,
+    organization = { name: "User" },
+    logout,
+  } = useAuth();
+
+  const navItems = [
+    { label: "Home", href: "/" },
+    {
+      label: "Solutions",
+      href: "#",
       subItems: [
-        { label: 'Biometric Verification', href: '/biometric' },
-        { label: 'Document Scanning', href: '/document' },
-        { label: 'Facial Recognition', href: '/facial' }
-      ]
+        { label: "Biometric Verification", href: "/biometric" },
+        { label: "Document Scanning", href: "/document" },
+        { label: "Facial Recognition", href: "/facial" },
+      ],
     },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Developers', href: '/developers' },
-    { label: 'About', href: '/about' }
+    { label: "Pricing", href: "/pricing" },
+    { label: "Developers", href: "/developers" },
+    { label: "About", href: "/about" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
-    if (!mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = mobileMenuOpen ? "" : "hidden";
   };
 
   const toggleSubmenu = (index: number) => {
@@ -51,25 +47,25 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         <div className="navbar-brand">
-          <a href="/" aria-label="Identity Verification System">
+          <a href="/">
             <span className="brand-icon">ID</span>
             <span className="brand-name">Identifi</span>
           </a>
         </div>
 
-        <div className={`navbar-links ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className={`navbar-links ${mobileMenuOpen ? "open" : ""}`}>
           <ul>
             {navItems.map((item, index) => (
-              <li 
+              <li
                 key={index}
-                className={`nav-item ${item.subItems ? 'has-submenu' : ''}`}
+                className={`nav-item ${item.subItems ? "has-submenu" : ""}`}
                 onMouseEnter={() => item.subItems && setActiveSubmenu(index)}
                 onMouseLeave={() => item.subItems && setActiveSubmenu(null)}
               >
-                <a 
+                <a
                   href={item.href}
                   onClick={(e) => {
                     if (item.subItems) {
@@ -81,9 +77,12 @@ const Navbar: React.FC = () => {
                   {item.label}
                   {item.subItems && <span className="dropdown-arrow">⌄</span>}
                 </a>
-                
                 {item.subItems && (
-                  <ul className={`submenu ${activeSubmenu === index ? 'active' : ''}`}>
+                  <ul
+                    className={`submenu ${
+                      activeSubmenu === index ? "active" : ""
+                    }`}
+                  >
                     {item.subItems.map((subItem, subIndex) => (
                       <li key={subIndex}>
                         <a href={subItem.href}>{subItem.label}</a>
@@ -96,15 +95,38 @@ const Navbar: React.FC = () => {
           </ul>
 
           <div className="navbar-actions">
-            <a href="/login" className="login-btn">Log in</a>
-            <a href="/demo" className="demo-btn">Request Demo</a>
+            {!isAuthenticated ? (
+              <a href="/login" className="login-btn">
+                Log in
+              </a>
+            ) : (
+              <div className="user-dropdown">
+                <span className="user-name">
+                  {typeof organization === "object" && organization?.name
+                    ? organization.name
+                    : "User"}{" "}
+                  ⌄
+                </span>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a href="/dashboard">Dashboard</a>
+                  </li>
+                  <li>
+                    <button onClick={logout}>Log out</button>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
+          <a href="/demo" className="demo-btn">
+            Request Demo
+          </a>
         </div>
 
-        <button 
-          className={`mobile-menu-btn ${mobileMenuOpen ? 'open' : ''}`}
+        <button
+          className={`mobile-menu-btn ${mobileMenuOpen ? "open" : ""}`}
           onClick={toggleMobileMenu}
-          aria-label="Toggle navigation menu"
+          aria-label="Toggle mobile menu"
         >
           <span></span>
           <span></span>
