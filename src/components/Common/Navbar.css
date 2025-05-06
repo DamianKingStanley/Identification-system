@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 70px;
 }
 
 /* Brand styles */
@@ -33,10 +33,16 @@
 }
 
 .brand-icon {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #2d9cdb;
+  color: white;
+  border-radius: 8px;
+  margin-right: 0.75rem;
   font-weight: 700;
-  color: #2563eb;
-  margin-right: 8px;
 }
 
 .brand-name {
@@ -92,7 +98,6 @@
   top: 100%;
   left: 0;
   background: #ffffff;
-  min-width: 200px;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   opacity: 0;

@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
 
   const {
     isAuthenticated,
-    organization = { name: "User" },
+    organization = { name: "User" } as { name: string } | unknown,
     logout,
   } = useAuth();
 
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
         <div className="navbar-brand">
           <a href="/">
             <span className="brand-icon">ID</span>
-            <span className="brand-name">Identifi</span>
+            <span className="brand-name">IDFace</span>
           </a>
         </div>
 
@@ -102,8 +102,11 @@ const Navbar: React.FC = () => {
             ) : (
               <div className="user-dropdown">
                 <span className="user-name">
-                  {typeof organization === "object" && organization?.name
-                    ? organization.name
+                  {typeof organization === "object" &&
+                  organization !== null &&
+                  "name" in organization &&
+                  typeof (organization as { name: string }).name === "string"
+                    ? String((organization as { name: string }).name)
                     : "User"}{" "}
                   ⌄
                 </span>

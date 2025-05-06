@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  organization: string;
+  organization: unknown;
   loading: boolean;
   error: string | null;
   register: (orgData: RegisterData) => Promise<void>;
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
-  name: string;
 }
 
 interface RegisterData {
