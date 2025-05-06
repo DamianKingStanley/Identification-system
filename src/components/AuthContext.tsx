@@ -43,7 +43,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const checkAuth = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("/api/auth/check", {
+        const res = await axios.get("http://localhost:5000/api/auth/check", {
           withCredentials: true,
         });
         if (res.data.organization) {
@@ -109,7 +109,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const logout = async () => {
     try {
       await axios.post(
-        "/api/organization/logout",
+        "http://localhost:5000/api/organization/logout",
         {},
         { withCredentials: true }
       );

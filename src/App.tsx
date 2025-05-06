@@ -7,22 +7,27 @@ import Login from "./pages/SignUp/Login";
 import Register from "./pages/SignUp/Register";
 import Footer from "./components/Common/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./components/AuthContext.tsx";
 
 const App: React.FC = () => {
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/identify-user" element={<Identify />} />
+        <AuthProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            {/* <Route path="/identify-user" element={<Identify />} /> */}
 
-          <Route element={<ProtectedRoute />}></Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/identify-user" element={<Identify />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
 
-        <Footer />
+          <Footer />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

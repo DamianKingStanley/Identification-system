@@ -55,6 +55,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
           <div className="scan-animation" aria-hidden="true"></div>
         </div>
+        {/* Add Video Section
+         <div className="hero-video">
+          <video
+            src="https://ik.imagekit.io/webmanagement/id-me/idme-vid.mp4?updatedAt=1746530992182"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="video-background"
+          ></video>
+        </div> */}
       </div>
     </section>
   );
